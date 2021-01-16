@@ -1,0 +1,58 @@
+﻿<Window x:Name="A2_Notepad" x:Class="nnguyen6831_A2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:nnguyen6831_A2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:CustomCommands.Close}"
+                        CanExecute="CommandBinding_CanExecute_Close"
+                        Executed="CommandBinding_Executed_Close"/>
+        <CommandBinding Command="{x:Static local:CustomCommands.SaveAs}"
+                        CanExecute="CommandBinding_CanExecute_SaveAs"
+                        Executed="CommandBinding_Executed_SaveAs"/>
+        
+    </Window.CommandBindings>
+    
+    <Grid>
+        
+        <DockPanel>
+            <Menu Name="menApp" DockPanel.Dock="Top">
+                <MenuItem Name="meiFile" Header="_File">
+                    <MenuItem Name="meiNew" Command="ApplicationCommands.New">
+                        <MenuItem.CommandBindings>
+                            <CommandBinding Command="ApplicationCommands.New"
+                                            CanExecute="CommandBinding_CanExecute_New"
+                                            Executed="CommandBinding_Executed_New"/>
+                        </MenuItem.CommandBindings>
+                    </MenuItem>
+                    <MenuItem Name="meiOpen" Header="Open..." Command="ApplicationCommands.Open">
+                        <MenuItem.CommandBindings>
+                            <CommandBinding Command="ApplicationCommands.Open"
+                                            CanExecute="CommandBinding_CanExecute_Open"
+                                            Executed="CommandBinding_Executed_Open"/>
+                        </MenuItem.CommandBindings>
+                    </MenuItem>
+                    <MenuItem Name="meiSaveAs" Header="Save as..." Command="{x:Static local:CustomCommands.SaveAs}" >
+
+                    </MenuItem>
+                    <MenuItem Name="meiClose" Header="Close" Command="{x:Static local:CustomCommands.Close}" >
+
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Name="meiHelp" Header="_Help">
+                    <MenuItem Name="meiAbout" Header="About" Click="meiAbout_Click" ></MenuItem>
+                </MenuItem>
+            </Menu>
+            <StatusBar Name="staBar" DockPanel.Dock="Bottom" Height="20">
+                <StatusBarItem>
+                    <TextBlock Name="txtBlock" />
+                </StatusBarItem>
+            </StatusBar>
+            <TextBox AcceptsReturn="True" Name="txtInput" SelectionChanged="txtInput_SelectionChanged"></TextBox>
+        </DockPanel>
+    </Grid>
+</Window>
